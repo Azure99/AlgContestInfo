@@ -59,12 +59,8 @@ public class CometOJCrawler extends BaseCrawler {
         int id = contest.get("id").asInt();
         String title = contest.get("title").asText();
 
-        String timeStr = contest.get("start_time").asText();
-        timeStr = timeStr.replace("T", " ").replace("+08:00", "");
-        Date startTime = parseDate(timeStr, "yyyy-MM-dd HH:mm:ss", "Asia/Shanghai");
-        timeStr = contest.get("end_time").asText();
-        timeStr = timeStr.replace("T", " ").replace("+08:00", "");
-        Date endTime = parseDate(timeStr, "yyyy-MM-dd HH:mm:ss", "Asia/Shanghai");
+        Date startTime = parseDate(contest.get("start_time"));
+        Date endTime = parseDate(contest.get("end_time"));
 
         boolean pub = contest.get("contest_type").asText().equals("Public");
         boolean register = contest.get("status").asInt() == 1;
@@ -77,5 +73,10 @@ public class CometOJCrawler extends BaseCrawler {
         }
 
         return new ContestEntity("CometOJ", title, startTime, endTime, status, "https://cometoj.com/contest/" + id);
+    }
+
+    private Date parseDate(JsonNode timeProp) {
+        String timeStr = timeProp.asText().replace("T", " ").replace("+08:00", "");
+        return parseDate(timeStr, "yyyy-MM-dd HH:mm:ss", "Asia/Shanghai");
     }
 }

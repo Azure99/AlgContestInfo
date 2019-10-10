@@ -46,10 +46,9 @@ public class NowCoderCrawler extends BaseCrawler {
         String name = contest.selectFirst("a").text();
         String link = "https://ac.nowcoder.com" + contest.selectFirst("a").attr("href");
 
-        String timeStr = subMid(contest.selectFirst("li.match-time-icon").text(), "比赛时间：", " 至 ");
-        Date startTime = parseDate(timeStr, "yyyy-MM-dd HH:mm", "Asia/Shanghai");
-        timeStr = subMid(contest.selectFirst("li.match-time-icon").text(), " 至 ", " （");
-        Date endTime = parseDate(timeStr, "yyyy-MM-dd HH:mm", "Asia/Shanghai");
+        String timeRange = contest.selectFirst("li.match-time-icon").text();
+        Date startTime = parseDate(subMid(timeRange, "比赛时间：", " 至 "));
+        Date endTime = parseDate(subMid(timeRange, " 至 ", " （"));
 
         boolean register = contest.selectFirst("span.match-signup") != null;
 
@@ -59,5 +58,9 @@ public class NowCoderCrawler extends BaseCrawler {
         }
 
         return new ContestEntity("NowCoder", name, startTime, endTime, status, link);
+    }
+
+    private Date parseDate(String time) {
+        return parseDate(time, "yyyy-MM-dd HH:mm", "Asia/Shanghai");
     }
 }

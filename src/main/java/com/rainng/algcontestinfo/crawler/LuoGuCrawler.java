@@ -30,7 +30,6 @@ public class LuoGuCrawler extends BaseCrawler {
 
     private List<ContestEntity> parseContests(JsonNode data) {
         List<ContestEntity> contestList = new ArrayList<>();
-
         for (JsonNode item : data) {
             contestList.add(parseContest(item));
         }

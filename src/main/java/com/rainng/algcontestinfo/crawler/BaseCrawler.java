@@ -56,11 +56,8 @@ public class BaseCrawler {
     }
 
     protected Date parseDate(String time, String pattern) {
-        SimpleDateFormat format = new SimpleDateFormat("", Locale.US);
-        format.applyPattern(pattern);
-        format.setLenient(false);
-
-        return format.parse(time, new ParsePosition(0));
+        String timeZone = TimeZone.getDefault().getID();
+        return parseDate(time, pattern, timeZone);
     }
 
     protected Date parseDate(String time, String pattern, String timeZone) {
