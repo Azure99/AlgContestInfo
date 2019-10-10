@@ -15,3 +15,7 @@ http://algcontest.rainng.com/
 * /contest/old/get 获取所有类型竞赛信息
 * /contest/old/getAcm 获取ACM竞赛信息
 * /contest/old/getOi 获取OI竞赛信息
+
+## FAQ
+Q: 为什么没有一些知名OJ的爬虫实现<br/>
+A: 这些OJ在近期未举办比赛或没有举办比赛的意向，当其举办比赛时会开发
