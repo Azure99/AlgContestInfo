@@ -3,6 +3,9 @@
 提供与 http://contests.acmicpc.info/contests.json 一致的接口<br/>
 其他信息等待完善
 
+## 官方数据源
+http://algcontest.rainng.com/
+
 ## API
 * /contest/get 获取所有类型竞赛信息
 * /contest/getAcm 获取ACM竞赛信息
