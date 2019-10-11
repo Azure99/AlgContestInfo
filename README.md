@@ -4,7 +4,8 @@
 其他信息等待完善
 
 ## 官方数据源
-http://algcontest.rainng.com/
+http://algcontest.rainng.com/<br/>
+已开启跨域支持，可以使用JavaScript语言直接调用
 
 ## API
 * /contest/get 获取所有类型竞赛信息
@@ -20,7 +21,7 @@ http://algcontest.rainng.com/
 Q: 为什么没有一些知名OJ的爬虫实现<br/>
 A: 这些OJ在近期未举办比赛或没有举办比赛的意向，当其举办比赛时会开发<br/>
 <br/>
-Q: 目前支持哪些站点？<br/>
+Q: 目前支持哪些站点？
 * [CodeForces](https://codeforces.com/contests)
 * [CometOJ](https://cometoj.com/contests)
 * [计蒜客](https://nanti.jisuanke.com/contest)
