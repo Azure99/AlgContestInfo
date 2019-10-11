@@ -18,4 +18,13 @@ http://algcontest.rainng.com/
 
 ## FAQ
 Q: 为什么没有一些知名OJ的爬虫实现<br/>
-A: 这些OJ在近期未举办比赛或没有举办比赛的意向，当其举办比赛时会开发
+A: 这些OJ在近期未举办比赛或没有举办比赛的意向，当其举办比赛时会开发<br/>
+<br/>
+Q: 目前支持哪些站点？<br/>
+A: <br/>
+* [CodeForces](https://codeforces.com/contests)
+* [CometOJ](https://cometoj.com/contests)
+* [计蒜客](https://nanti.jisuanke.com/contest)
+* [LeetCode](https://leetcode.com/contest/)
+* [洛谷](https://www.luogu.org/contest/list)
+* [牛客网](https://ac.nowcoder.com/acm/home)
