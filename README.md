@@ -3,6 +3,9 @@
 提供与 http://contests.acmicpc.info/contests.json 一致的接口<br/>
 其他信息等待完善
 
+## 官方数据源
+http://algcontest.rainng.com/
+
 ## API
 * /contest/get 获取所有类型竞赛信息
 * /contest/getAcm 获取ACM竞赛信息
@@ -12,3 +15,7 @@
 * /contest/old/get 获取所有类型竞赛信息
 * /contest/old/getAcm 获取ACM竞赛信息
 * /contest/old/getOi 获取OI竞赛信息
+
+## FAQ
+Q: 为什么没有一些知名OJ的爬虫实现<br/>
+A: 这些OJ在近期未举办比赛或没有举办比赛的意向，当其举办比赛时会开发
