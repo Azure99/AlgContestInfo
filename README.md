@@ -4,8 +4,10 @@
 其他信息等待完善
 
 ## 官方数据源
-http://algcontest.rainng.com/<br/>
-已开启跨域支持，可以使用JavaScript语言直接调用
+http://algcontest.rainng.com/<br/><br/>
+本数据源允许直接引用，但请标注以下文字，谢谢。<br/>
+**数据来源http://algcontest.rainng.com/**<br/>
+已开启跨域支持，可以使用JavaScript等前端语言调用
 
 ## API
 * /contest/get 获取所有类型竞赛信息
