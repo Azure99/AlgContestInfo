@@ -26,6 +26,15 @@ public class BaseCrawler {
         }
     }
 
+    protected String post(String url, String data, Map<String, String> headers) {
+        try {
+            return httpRequester.post(url, data, headers);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return "";
+        }
+    }
+
     protected String subStart(String str, String mid) {
         int index = str.indexOf(mid);
         if (index == -1) {

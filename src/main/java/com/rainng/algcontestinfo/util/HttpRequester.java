@@ -2,12 +2,10 @@ package com.rainng.algcontestinfo.util;
 
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 @Component
 public class HttpRequester {
@@ -23,6 +21,40 @@ public class HttpRequester {
         conn.setRequestMethod("GET");
         conn.setRequestProperty(USER_AGENT_KEY, USER_AGENT);
         conn.connect();
+
+        try (InputStream inputStream = conn.getInputStream()) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                StringBuilder builder = new StringBuilder();
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+
+                return builder.toString();
+            }
+        }
+    }
+
+    public String post(String address, String data, Map<String, String> headers) throws IOException {
+        URL url = new URL(address);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setConnectTimeout(CONNECT_TIMEOUT);
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty(USER_AGENT_KEY, USER_AGENT);
+        for (String key : headers.keySet()) {
+            conn.setRequestProperty(key, headers.get(key));
+        }
+        conn.connect();
+
+        try (OutputStream outputStream = conn.getOutputStream()) {
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream))) {
+                writer.write(data);
+                writer.flush();
+            }
+        }
 
         try (InputStream inputStream = conn.getInputStream()) {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
