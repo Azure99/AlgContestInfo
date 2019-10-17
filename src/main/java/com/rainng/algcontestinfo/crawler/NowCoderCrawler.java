@@ -46,9 +46,9 @@ public class NowCoderCrawler extends BaseCrawler {
         String name = contest.selectFirst("a").text();
         String link = "https://ac.nowcoder.com" + contest.selectFirst("a").attr("href");
 
-        String timeRange = contest.selectFirst("li.match-time-icon").text();
+        String timeRange = contest.selectFirst("li.match-time-icon").text().replace('（', '(');
         Date startTime = parseDate(subMid(timeRange, "比赛时间：", " 至 "));
-        Date endTime = parseDate(subMid(timeRange, " 至 ", " （"));
+        Date endTime = parseDate(subMid(timeRange, " 至 ", " ("));
 
         boolean register = contest.selectFirst("span.match-signup") != null;
 
