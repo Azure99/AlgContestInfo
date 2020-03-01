@@ -32,17 +32,17 @@ public class ContestController {
     }
 
     @RequestMapping({"/contests.json", "/contests/old"})
-    public List<OldContestEntity> getContestsOld() {
-        return service.getContestsOld();
+    public List<OldContestEntity> getOldContests() {
+        return service.getOldContests();
     }
 
     @RequestMapping({"/acm-contests.json", "/contests/old/acm"})
-    public List<OldContestEntity> getAcmContestsOld() {
-        return service.getAcmContestsOld();
+    public List<OldContestEntity> getOldAcmContests() {
+        return service.getOldAcmContests();
     }
 
     @RequestMapping({"/oi-contests.json", "/contests/old/oi"})
-    public List<OldContestEntity> getOiContestsOld() {
-        return service.getOiContestsOld();
+    public List<OldContestEntity> getOldOiContests() {
+        return service.getOldOiContests();
     }
 }

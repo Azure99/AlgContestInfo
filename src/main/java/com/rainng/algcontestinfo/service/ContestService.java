@@ -3,7 +3,6 @@ package com.rainng.algcontestinfo.service;
 import com.rainng.algcontestinfo.manager.ContestManager;
 import com.rainng.algcontestinfo.models.ContestEntity;
 import com.rainng.algcontestinfo.models.OldContestEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,15 +28,15 @@ public class ContestService {
         return manager.getOiContests();
     }
 
-    public List<OldContestEntity> getContestsOld() {
+    public List<OldContestEntity> getOldContests() {
         return convertToOldContest(getContests());
     }
 
-    public List<OldContestEntity> getAcmContestsOld() {
+    public List<OldContestEntity> getOldAcmContests() {
         return convertToOldContest(getAcmContests());
     }
 
-    public List<OldContestEntity> getOiContestsOld() {
+    public List<OldContestEntity> getOldOiContests() {
         return convertToOldContest(getOiContests());
     }
 

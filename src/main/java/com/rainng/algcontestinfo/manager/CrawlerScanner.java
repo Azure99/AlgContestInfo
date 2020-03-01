@@ -13,6 +13,7 @@ import java.util.Map;
 @Component
 public class CrawlerScanner implements ApplicationContextAware {
     private ApplicationContext context;
+
     @Getter
     private BaseCrawler[] crawlers;
 
