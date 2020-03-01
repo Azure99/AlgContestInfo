@@ -21,9 +21,9 @@ public class JiSuanKeCrawler extends BaseCrawler {
         List<ContestEntity> contestList = new ArrayList<>();
 
         Document doc = Jsoup.parse(get(URL));
-        Elements elements = doc.selectFirst("tbody").select("tr");
-        for (Element element : elements) {
-            contestList.add(parseContest(element));
+        Elements contests = doc.selectFirst("tbody").select("tr");
+        for (Element contest : contests) {
+            contestList.add(parseContest(contest));
         }
 
         return contestList;
