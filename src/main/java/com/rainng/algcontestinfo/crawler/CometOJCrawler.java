@@ -20,12 +20,12 @@ public class CometOJCrawler extends BaseCrawler {
 
     @Override
     public List<ContestEntity> crawl() {
-        List<ContestEntity> contestList = crawl(ACM_URL);
-
         List<ContestEntity> oiList = crawl(OI_URL);
         for (ContestEntity contest : oiList) {
             contest.setOiContest(true);
         }
+
+        List<ContestEntity> contestList = crawl(ACM_URL);
         contestList.addAll(oiList);
 
         return contestList;
