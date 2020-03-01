@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @EnableScheduling
 @Component
 public class ContestManager {
-    private static final int OJ_LIMIT = 3;
-    private static final int SUM_LIMIT = 20;
+    private static final int OJ_LIMIT = 4;
+    private static final int SUM_LIMIT = 25;
 
     private final CrawlerScanner crawlerScanner;
     private Map<String, Set<ContestEntity>> contestMap = new HashMap<>();
@@ -60,6 +60,8 @@ public class ContestManager {
 
     @Scheduled(fixedDelay = 5 * 60 * 1000)
     public void crawlTask() {
+        System.out.println("Starting crawl contests...");
+
         Map<String, Set<ContestEntity>> newMap = new HashMap<>();
 
         for (BaseCrawler crawler : crawlerScanner.getCrawlers()) {
@@ -67,9 +69,11 @@ public class ContestManager {
             Set<ContestEntity> set = new TreeSet<>(crawlOne(crawler));
 
             newMap.put(name, set);
+            System.out.println(name + ": " + set.size());
         }
 
         contestMap = newMap;
+        System.out.println("Done!");
     }
 
     private List<ContestEntity> crawlOne(BaseCrawler crawler) {
