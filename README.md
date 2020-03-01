@@ -7,7 +7,7 @@
 http://algcontest.rainng.com/<br/><br/>
 本数据源允许直接引用，但请标注以下文字，谢谢。<br/>
 **数据来源http://algcontest.rainng.com/**<br/>
-已开启跨域支持，可以使用JavaScript等前端语言调用
+已开启跨域，支持Https，可以使用JavaScript等前端语言调用
 
 ## API
 * /contests 获取所有类型竞赛信息
@@ -18,6 +18,8 @@ http://algcontest.rainng.com/<br/><br/>
 * /contests/old 获取所有类型竞赛信息
 * /contests/old/acm 获取ACM竞赛信息
 * /contests/old/oi 获取OI竞赛信息
+
+官方数据源完全兼容老ACM竞赛信息站，您可以将contests.acmicpc.info重定向至algcontest.rainng.com
 
 ## FAQ
 Q: 为什么没有一些知名OJ的爬虫实现<br/>
