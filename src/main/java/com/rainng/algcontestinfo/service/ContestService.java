@@ -11,8 +11,11 @@ import java.util.List;
 
 @Component
 public class ContestService {
-    @Autowired
-    private ContestManager manager;
+    private final ContestManager manager;
+
+    public ContestService(ContestManager manager) {
+        this.manager = manager;
+    }
 
     public List<ContestEntity> getContests() {
         return manager.getContests();

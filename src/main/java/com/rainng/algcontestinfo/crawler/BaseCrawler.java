@@ -22,6 +22,7 @@ public class BaseCrawler {
             return httpRequester.get(url);
         } catch (IOException ex) {
             ex.printStackTrace();
+            System.err.println("Request failed: " + url);
             return "";
         }
     }
@@ -31,6 +32,7 @@ public class BaseCrawler {
             return httpRequester.post(url, data, headers);
         } catch (IOException ex) {
             ex.printStackTrace();
+            System.err.println("Request failed: " + url);
             return "";
         }
     }

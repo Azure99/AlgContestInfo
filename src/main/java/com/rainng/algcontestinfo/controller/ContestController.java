@@ -1,42 +1,48 @@
 package com.rainng.algcontestinfo.controller;
 
+import com.rainng.algcontestinfo.models.ContestEntity;
+import com.rainng.algcontestinfo.models.OldContestEntity;
 import com.rainng.algcontestinfo.service.ContestService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ContestController {
-    @Autowired
-    private ContestService service;
+    private final ContestService service;
 
-    @RequestMapping({"/", "/contest/get"})
-    public Object getContests() {
+    public ContestController(ContestService service) {
+        this.service = service;
+    }
+
+    @RequestMapping({"/", "/contests"})
+    public List<ContestEntity> getContests() {
         return service.getContests();
     }
 
-    @RequestMapping({"/acm", "/contest/getAcm"})
-    public Object getAcmContests() {
+    @RequestMapping({"/acm", "/contests/acm"})
+    public List<ContestEntity> getAcmContests() {
         return service.getAcmContests();
     }
 
-    @RequestMapping({"/oi", "/contest/getOi"})
-    public Object getOiContests() {
+    @RequestMapping({"/oi", "/contests/oi"})
+    public List<ContestEntity> getOiContests() {
         return service.getOiContests();
     }
 
-    @RequestMapping({"/contests.json", "/contest/old/get"})
-    public Object getContestsOld() {
+    @RequestMapping({"/contests.json", "/contests/old"})
+    public List<OldContestEntity> getContestsOld() {
         return service.getContestsOld();
     }
 
-    @RequestMapping({"/acmcontests.json", "/contest/old/getAcm"})
-    public Object getAcmContestsOld() {
+    @RequestMapping({"/acm-contests.json", "/contests/old/acm"})
+    public List<OldContestEntity> getAcmContestsOld() {
         return service.getAcmContestsOld();
     }
 
-    @RequestMapping({"/oicontests.json", "/contest/old/getOi"})
-    public Object getOiContestsOld() {
+    @RequestMapping({"/oi-contests.json", "/contests/old/oi"})
+    public List<OldContestEntity> getOiContestsOld() {
         return service.getOiContestsOld();
     }
 }

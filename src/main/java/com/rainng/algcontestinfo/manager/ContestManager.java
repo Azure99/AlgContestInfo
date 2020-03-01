@@ -2,7 +2,6 @@ package com.rainng.algcontestinfo.manager;
 
 import com.rainng.algcontestinfo.crawler.BaseCrawler;
 import com.rainng.algcontestinfo.models.ContestEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -17,9 +16,12 @@ public class ContestManager {
     private static final int OJ_LIMIT = 3;
     private static final int SUM_LIMIT = 20;
 
-    @Autowired
-    private CrawlerScanner crawlerScanner;
+    private final CrawlerScanner crawlerScanner;
     private Map<String, Set<ContestEntity>> contestMap = new HashMap<>();
+
+    public ContestManager(CrawlerScanner crawlerScanner) {
+        this.crawlerScanner = crawlerScanner;
+    }
 
     public List<ContestEntity> getContests() {
         return query(x -> true);

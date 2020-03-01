@@ -16,10 +16,6 @@ public class ContestEntity implements Comparable {
     private boolean oiContest;
     private String link;
 
-    public ContestEntity() {
-
-    }
-
     public ContestEntity(String oj, String name, Date startTime, Date endTime, String status, String link) {
         this(oj, name, startTime, endTime, status, false, link);
     }

@@ -10,14 +10,14 @@ http://algcontest.rainng.com/<br/><br/>
 已开启跨域支持，可以使用JavaScript等前端语言调用
 
 ## API
-* /contest/get 获取所有类型竞赛信息
-* /contest/getAcm 获取ACM竞赛信息
-* /contest/getOi 获取OI竞赛信息
+* /contests 获取所有类型竞赛信息
+* /contests/acm 获取ACM竞赛信息
+* /contests/oi 获取OI竞赛信息
 
 ## 兼容IcpcInfo信息站API
-* /contest/old/get 获取所有类型竞赛信息
-* /contest/old/getAcm 获取ACM竞赛信息
-* /contest/old/getOi 获取OI竞赛信息
+* /contests/old 获取所有类型竞赛信息
+* /contests/old/acm 获取ACM竞赛信息
+* /contests/old/oi 获取OI竞赛信息
 
 ## FAQ
 Q: 为什么没有一些知名OJ的爬虫实现<br/>
