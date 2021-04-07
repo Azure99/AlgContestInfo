@@ -43,8 +43,8 @@ public class JiSuanKeCrawler extends BaseCrawler {
     }
 
     private Date convertEndTime(Date startTime, String lengthString) {
-        int hour = Integer.parseInt(subStart(lengthString, " 小时 "));
-        int min = Integer.parseInt(subMid(lengthString, " 小时 ", " 分钟"));
+        int hour = Integer.parseInt(subStart(lengthString, " 小时"));
+        int min = Integer.parseInt(subMid(lengthString, "小时", " 分钟"));
         int length = hour * 60 * 60 * 1000;
         length += min * 60 * 1000;
 
