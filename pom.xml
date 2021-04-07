@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.rainng</groupId>
     <artifactId>alg-contest-info</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>AlgContestInfo</name>
     <description>A crawler for algorithm contest information</description>
 
