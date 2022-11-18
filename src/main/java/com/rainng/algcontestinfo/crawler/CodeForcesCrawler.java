@@ -53,7 +53,7 @@ public class CodeForcesCrawler extends BaseCrawler {
 
     private Date convertEndTime(Date startTime, String lengthString) {
         String pattern = lengthString.length() <= 5 ? "HH:mm" : "dd:HH:mm";
-        Date length = parseDate(lengthString, pattern);
+        Date length = parseDate(lengthString, pattern, "UTC");
 
         return new Date(startTime.getTime() + length.getTime());
     }
