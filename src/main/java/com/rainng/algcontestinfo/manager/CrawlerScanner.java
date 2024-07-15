@@ -1,7 +1,6 @@
 package com.rainng.algcontestinfo.manager;
 
 import com.rainng.algcontestinfo.crawler.BaseCrawler;
-import lombok.Getter;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -14,7 +13,6 @@ import java.util.Map;
 public class CrawlerScanner implements ApplicationContextAware {
     private ApplicationContext context;
 
-    @Getter
     private BaseCrawler[] crawlers;
 
     @Override
@@ -29,5 +27,9 @@ public class CrawlerScanner implements ApplicationContextAware {
         crawlerMap.values().toArray(crawlers);
 
         this.crawlers = crawlers;
+    }
+
+    public BaseCrawler[] getCrawlers() {
+        return crawlers;
     }
 }

@@ -1,10 +1,8 @@
 package com.rainng.algcontestinfo.models;
 
-import lombok.Data;
 
 import java.util.Date;
 
-@Data
 public class ContestEntity implements Comparable {
     private String oj;
     private String name;
@@ -31,6 +29,78 @@ public class ContestEntity implements Comparable {
         this.oiContest = oiContest;
         this.link = link;
         updateStatus();
+    }
+
+    public String getOj() {
+        return oj;
+    }
+
+    public void setOj(String oj) {
+        this.oj = oj;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Long getStartTimeStamp() {
+        return startTimeStamp;
+    }
+
+    public void setStartTimeStamp(Long startTimeStamp) {
+        this.startTimeStamp = startTimeStamp;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Long getEndTimeStamp() {
+        return endTimeStamp;
+    }
+
+    public void setEndTimeStamp(Long endTimeStamp) {
+        this.endTimeStamp = endTimeStamp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isOiContest() {
+        return oiContest;
+    }
+
+    public void setOiContest(boolean oiContest) {
+        this.oiContest = oiContest;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public void updateStatus() {
