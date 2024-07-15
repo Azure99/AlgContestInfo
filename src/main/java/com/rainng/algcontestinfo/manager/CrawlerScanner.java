@@ -1,12 +1,12 @@
 package com.rainng.algcontestinfo.manager;
 
 import com.rainng.algcontestinfo.crawler.BaseCrawler;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.Map;
 
 @Component

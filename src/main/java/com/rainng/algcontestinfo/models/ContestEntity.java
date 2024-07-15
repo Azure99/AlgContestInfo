@@ -114,8 +114,7 @@ public class ContestEntity implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if (o instanceof ContestEntity) {
-            ContestEntity i = (ContestEntity) o;
+        if (o instanceof ContestEntity i) {
 
             int cmp = startTime.compareTo(i.startTime);
             if (cmp == 0) {

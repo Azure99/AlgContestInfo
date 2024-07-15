@@ -13,11 +13,13 @@ import java.util.*;
 @Component
 public class LeetCodeCrawler extends BaseCrawler {
     private static final String URL = "https://leetcode.com/graphql";
-    private static final String REQUEST_BODY = "{\n" +
-            "\t\"operationName\": null,\n" +
-            "\t\"variables\": {},\n" +
-            "\t\"query\": \"{\\n  brightTitle\\n  allContests {\\n    containsPremium\\n    title\\n    cardImg\\n    titleSlug\\n    description\\n    startTime\\n    duration\\n    originStartTime\\n    isVirtual\\n    company {\\n      watermark\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"\n" +
-            "}";
+    private static final String REQUEST_BODY = """
+            {
+            	"operationName": null,
+            	"variables": {},
+            	"query": "{\\n  brightTitle\\n  allContests {\\n    containsPremium\\n    title\\n    cardImg\\n    titleSlug\\n    description\\n    startTime\\n    duration\\n    originStartTime\\n    isVirtual\\n    company {\\n      watermark\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n"
+            }\
+            """;
 
     private final Map<String, String> headers = new HashMap<>();
 
