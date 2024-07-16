@@ -14,7 +14,7 @@ import java.util.List;
 
 @Component
 public class CodeForcesCrawler extends BaseCrawler {
-    private static final String URL = "http://codeforces.com/contests";
+    private static final String URL = "https://codeforces.com/contests";
 
     @Override
     public List<ContestEntity> crawl() {

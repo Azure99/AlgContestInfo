@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @EnableScheduling
 @Component
 public class ContestManager {
+    private static final int CRAWL_MAX_RETRY = 3;
     private static final int OJ_LIMIT = 4;
     private static final int SUM_LIMIT = 25;
 
@@ -66,10 +67,17 @@ public class ContestManager {
 
         for (BaseCrawler crawler : crawlerScanner.getCrawlers()) {
             String name = crawler.getClass().getSimpleName().replace("Crawler", "");
-            Set<ContestEntity> set = new TreeSet<>(crawlOne(crawler));
-
-            newMap.put(name, set);
-            System.out.println(name + ": " + set.size());
+            for (int i = 0; i < CRAWL_MAX_RETRY; i++) {
+                try {
+                    crawlOne(crawler);
+                    Set<ContestEntity> set = new TreeSet<>(crawlOne(crawler));
+                    newMap.put(name, set);
+                    System.out.println(name + ": " + set.size());
+                    break;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
         contestMap = newMap;
