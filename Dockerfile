@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:17
 
 LABEL author="azure99"
 LABEL mail="i@rainng.com"
