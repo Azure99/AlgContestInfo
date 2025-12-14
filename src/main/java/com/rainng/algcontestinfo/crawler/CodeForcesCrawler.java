@@ -1,11 +1,9 @@
 package com.rainng.algcontestinfo.crawler;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rainng.algcontestinfo.models.ContestEntity;
 import com.rainng.algcontestinfo.models.ContestStatus;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,34 +12,49 @@ import java.util.List;
 
 @Component
 public class CodeForcesCrawler extends BaseCrawler {
-    private static final String URL = "https://codeforces.com/contests";
+    private static final String URL = "https://codeforces.com/api/contest.list";
 
     @Override
     public List<ContestEntity> crawl() {
         List<ContestEntity> contestList = new ArrayList<>();
 
-        Document doc = Jsoup.parse(get(URL));
-        Elements contests = doc.selectFirst("div.datatable").select("tr[data-contestid]");
-        for (Element contest : contests) {
+        JsonNode contests = fetchContestsJson();
+        if (contests == null || !contests.isArray()) {
+            return contestList;
+        }
+
+        for (JsonNode contest : contests) {
             contestList.add(parseContest(contest));
         }
 
         return contestList;
     }
 
-    private ContestEntity parseContest(Element contest) {
-        Elements cols = contest.select("td");
+    private JsonNode fetchContestsJson() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(get(URL));
+            if (!"OK".equals(root.path("status").asText())) {
+                return null;
+            }
+            return root.path("result");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
 
-        String id = contest.attr("data-contestid");
+    private ContestEntity parseContest(JsonNode contest) {
+        String id = contest.path("id").asText();
         String link = "https://codeforces.com/contest/" + id;
-        String name = cols.get(0).text().replace(" Enter »", "");
+        String name = contest.path("name").asText();
 
-        String timeStr = cols.get(2).text();
-        String lengthStr = cols.get(3).text().trim();
-        Date startTime = parseDate(timeStr, "MMM/dd/yyyy HH:mm", "Europe/Moscow");
-        Date endTime = convertEndTime(startTime, lengthStr);
+        Date startTime = new Date(contest.path("startTimeSeconds").asLong() * 1000);
+        long durationSeconds = contest.path("durationSeconds").asLong();
+        Date endTime = new Date(startTime.getTime() + durationSeconds * 1000);
 
-        boolean register = cols.get(5).text().contains("Register");
+        String phase = contest.path("phase").asText();
+        boolean register = "BEFORE".equals(phase);
 
         String status = ContestStatus.PUBLIC;
         if (register) {
@@ -49,12 +62,5 @@ public class CodeForcesCrawler extends BaseCrawler {
         }
 
         return new ContestEntity("CodeForces", name, startTime, endTime, status, link);
-    }
-
-    private Date convertEndTime(Date startTime, String lengthString) {
-        String pattern = lengthString.length() <= 5 ? "HH:mm" : "dd:HH:mm";
-        Date length = parseDate(lengthString, pattern, "UTC");
-
-        return new Date(startTime.getTime() + length.getTime());
     }
 }
