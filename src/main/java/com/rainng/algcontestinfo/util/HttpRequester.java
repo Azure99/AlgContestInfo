@@ -24,6 +24,17 @@ public class HttpRequester {
         return readDataString(conn);
     }
 
+    public String get(String address, Map<String, String> headers) throws IOException {
+        URL url = new URL(address);
+        HttpURLConnection conn = createConnection(url, HTTP_GET);
+        for (String key : headers.keySet()) {
+            conn.setRequestProperty(key, headers.get(key));
+        }
+        conn.connect();
+
+        return readDataString(conn);
+    }
+
     public String post(String address, String data, Map<String, String> headers) throws IOException {
         URL url = new URL(address);
         HttpURLConnection conn = createConnection(url, HTTP_POST);

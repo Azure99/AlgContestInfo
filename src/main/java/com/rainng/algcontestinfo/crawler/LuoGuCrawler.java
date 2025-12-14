@@ -10,16 +10,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class LuoGuCrawler extends BaseCrawler {
-    private static final String URL = "https://www.luogu.org/contest/list?page=1&_contentOnly=1";
+    private static final String URL = "https://www.luogu.com.cn/contest/list?page=1&_contentOnly=1";
+    private static final Map<String, String> HEADERS = Map.of(
+            "User-Agent", "curl/7.88.1",
+            "Accept", "application/json"
+    );
 
     @Override
     public List<ContestEntity> crawl() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode data = objectMapper.readTree(get(URL)).get("currentData").get("contests").get("result");
+            JsonNode data = objectMapper.readTree(get(URL, HEADERS))
+                    .path("currentData")
+                    .path("contests")
+                    .path("result");
+            if (!data.isArray()) {
+                return new ArrayList<>();
+            }
 
             return parseContests(data);
         } catch (IOException ex) {

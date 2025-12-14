@@ -27,6 +27,16 @@ public class BaseCrawler {
         }
     }
 
+    protected String get(String url, Map<String, String> headers) {
+        try {
+            return httpRequester.get(url, headers);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            System.err.println("Request failed: " + url);
+            return "";
+        }
+    }
+
     protected String post(String url, String data, Map<String, String> headers) {
         try {
             return httpRequester.post(url, data, headers);
