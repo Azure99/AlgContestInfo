@@ -1,11 +1,10 @@
-FROM openjdk:17
+FROM eclipse-temurin:17-jre-jammy
 
 LABEL author="azure99"
 LABEL mail="i@rainng.com"
 
-USER root
-WORKDIR /root
+WORKDIR /app
 
-COPY target/alg-contest-info.jar /root/
+COPY target/alg-contest-info.jar /app/
 
-ENTRYPOINT java -jar alg-contest-info.jar
+ENTRYPOINT ["java","-jar","alg-contest-info.jar"]

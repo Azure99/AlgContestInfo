@@ -5,7 +5,7 @@
 
 ## 使用Docker部署
 ```
-docker run -d -p 8081:8081 azure99/alg-contest-info:1.0.3
+docker run -d --name alg-contest-info -p 8081:8081 azure99/alg-contest-info:1.0.3
 ```
 
 ## 官方数据源
