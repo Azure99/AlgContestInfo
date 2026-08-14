@@ -36,6 +36,10 @@ public class NowCoderCrawler extends BaseCrawler {
         Document doc = Jsoup.parse(get(url));
         Elements contests = doc.select("div.platform-item-cont");
         for (Element contest : contests) {
+            // 过滤训练赛
+            if (contest.select("div.match-status").text().contains("训练赛")) {
+                continue;
+            }
             contestList.add(parseContest(contest));
         }
 
